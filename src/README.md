@@ -11,10 +11,10 @@ A super simple FastAPI application that allows students to view and sign up for 
 
 ## Getting Started
 
-1. Install the dependencies:
+1. Install the dependencies from the repository root:
 
    ```
-   pip install fastapi uvicorn
+   python -m pip install -r requirements.txt
    ```
 
 2. Run the application:
@@ -54,8 +54,19 @@ All data is stored in memory, which means data will be reset when the server res
 
 ## Tests
 
-Run the API tests from the repository root:
+Run the backend API tests from the repository root:
 
 ```
-python -m unittest discover -s tests -v
+python -m pytest -q
+```
+
+The [tests directory](../tests/) contains tests for activity listing, the homepage
+redirect, signup, and participant removal. Tests use FastAPI's TestClient, so no
+running server or browser is needed. Each test gets fresh activity data, and the
+original application state is restored afterward.
+
+To run a single test file:
+
+```
+python -m pytest -q tests/test_signup.py
 ```
